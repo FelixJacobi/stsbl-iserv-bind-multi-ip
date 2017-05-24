@@ -1,3 +1,10 @@
+stsbl-iserv-bind-multi-ip (17.05.24-1) experimental; urgency=medium
+
+  [ Felix Jacobi ]
+  * Fixed package section.
+
+ -- Stadtteilschule Blankenese <repository@stsbl.de>  Wed, 24 May 2017 14:07:57 +0200
+
 stsbl-iserv-bind-multi-ip (17.05.24-0) unstable; urgency=low
 
   * Initial Release.
