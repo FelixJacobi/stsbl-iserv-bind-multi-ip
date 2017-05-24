@@ -1,5 +1,5 @@
 Source: stsbl-iserv-bind-multi-ip
-Section: unknown
+Section: misc
 Priority: optional
 Maintainer: Stadtteilschule Blankenese <repository@stsbl.de>
 Build-Depends: debhelper (>= 9)
