@@ -1,0 +1,28 @@
+; BIND zone for IServ (deprecated)
+;
+; This file is generated automatically by iservchk.
+; It is not recommended to make any changes to this file.
+; If really necessary you can save changes permanently using:
+;   iconf save /etc/bind/db.iserv
+
+\$TTL	600
+@		SOA	$Servername. hostmaster.$Domain. (
+				1          ; serial
+				86400      ; refresh (1 day)
+				7200       ; retry (2 hours)
+				3600000    ; expire (5 weeks 6 days 16 hours)
+				172800     ; minimum (2 days)
+				)
+		NS	$Servername.
+$(
+    for i in $(netquery -p ip)
+    do
+      echo -e '\t\t'A'\t'$i
+    done
+    for i in $(netquery -p ip)
+    do
+      echo -e wpad'\t\t'A'\t'$i
+    done
+)
+iserv		CNAME	$Servername.
+

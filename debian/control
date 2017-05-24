@@ -1,0 +1,12 @@
+Source: stsbl-iserv-bind-multi-ip
+Section: unknown
+Priority: optional
+Maintainer: Stadtteilschule Blankenese <repository@stsbl.de>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+
+Package: stsbl-iserv-bind-multi-ip
+Architecture: all
+Depends: ${misc:Depends}
+Description: IServ BIND - Multi-IP
+ Konfiguriert den DNS-Server so, dass alle privaten Server IP-Adressen zurückgegeben werden und nicht nur eine.

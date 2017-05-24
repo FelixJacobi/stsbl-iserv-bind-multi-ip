@@ -1,0 +1,58 @@
+; BIND forward zone for IServ
+;
+; This file is generated automatically by iservchk.
+; It is not recommended to make any changes to this file.
+; If really necessary you can save changes permanently using:
+;   iconf save /etc/bind/db.forward
+;
+; For your own settings you can use:
+;   /etc/bind/db.forward.local
+
+\$TTL	600
+@		SOA	$Servername. hostmaster.$Domain. (
+				1          ; serial
+				86400      ; refresh (1 day)
+				7200       ; retry (2 hours)
+				3600000    ; expire (5 weeks 6 days 16 hours)
+				172800     ; minimum (2 days)
+				)
+		NS	$Servername.
+$(
+    for i in $(netquery -p ip)
+    do
+      echo -e '\t\t'A'\t'$i
+    done
+)
+		MX	5 $Servername.
+$(
+    if [ "${Servername%%.$Domain}" != "$(hostname -s)" ]
+    then
+      if [ "${Servername%%.$Domain}" != "$Servername" ]
+      then
+        for i in for i in $(netquery -p ip)
+	do
+          echo -e ${Servername%%.$Domain}'\t\t'A'\t'$i
+	done
+      elif [ "$Servername" != "$Domain" ]
+      then
+        # Fallback if Servername is not a hostname within our domain. This
+        # will quite likely produce some warnings by named
+        for i in $(netquery -p ip)
+	do
+	  echo -e ${Servername}.'\t\t'A'\t'$i
+	done
+      fi
+    fi
+    for i in $(netquery -p ip)
+    do
+      echo -e $(hostname -s)'\t\t'A'\t'$i
+    done
+    for i in $(netquery -p ip)
+    do
+      echo -e wpad'\t\t'A'\t'$i
+    done
+)
+*		CNAME	$Servername.
+
+\$INCLUDE /var/lib/iserv/config/db.forward.hosts
+\$INCLUDE /etc/bind/db.forward.local
